@@ -76,6 +76,3 @@ class plane_cube:
                     print(command)
                     print(f"잘못된 입력입니다. 입력은 {self.valid_commands} 만 가능합니다.")
                     break
-
-# plane_cube 클래스의 생성자를 호출하여 화면에 출력합니다.
-plane_cube()
