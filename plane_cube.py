@@ -7,3 +7,9 @@ class plane_cube:
         self.print_cube() # 현재 큐브 상태를 출력하는 함수
         self.enter_commands() # 사용자로부터 입력을 받아 처리하는 함수
     
+    def print_cube(self):
+        for i in range(3):
+            for j in range(3):
+                print(self.cube[i][j], end=' ')
+            print()
+        print()
