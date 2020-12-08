@@ -19,7 +19,44 @@ class plane_cube:
     # command가 유효한 명령어인지 판단하는 함수
     def check(self, command):
         return True if command in self.valid_commands else False
-
+    
+    # command에 따라 큐브를 조작하는 함수
+    def process_command(self, command):
+        print(command)
+        if command == "U":
+            c = ''.join(self.cube[0])
+            self.cube[0] = list(push_left(1, c))
+        elif command == "U'":
+            c = ''.join(self.cube[0])
+            self.cube[0] = list(push_right(1, c))
+        elif command == "R":
+            c = ''.join([self.cube[i][-1] for i in range(3)])
+            c = list(push_left(1, c))
+            for i in range(3):
+                self.cube[i][-1] = c[i]
+        elif command == "R'":
+            c = ''.join([self.cube[i][-1] for i in range(3)])
+            c = list(push_right(1, c))
+            for i in range(3):
+                self.cube[i][-1] = c[i]
+        elif command == "L":
+            c = ''.join([self.cube[i][0] for i in range(3)])
+            c = list(push_left(1, c))
+            for i in range(3):
+                self.cube[i][0] = c[i]
+        elif command == "L'":
+            c = ''.join([self.cube[i][0] for i in range(3)])
+            c = list(push_left(1, c))
+            for i in range(3):
+                self.cube[i][0] = c[i]
+        elif command == "B":
+            c = ''.join(self.cube[2])
+            self.cube[2] = list(push_left(1, c))
+        elif command == "B'":
+            c = ''.join(self.cube[2])
+            self.cube[2] = list(push_right(1, c))
+        self.print_cube()
+    
     # 사용자로부터 입력을 받아 처리하는 함수
     def enter_commands(self):
         while True:
