@@ -5,7 +5,7 @@ class plane_cube:
     def __init__(self):
         self.cube = [['R', 'R', 'W'], ['G', 'C', 'W'], ['G', 'B', 'B']] # 초기 큐브 상태
         self.print_cube() # 현재 큐브 상태를 출력하는 함수
-        self.valid_commands = ["U", "U'", "R", "R'", "L", "L'", "B", "B'"] # 유효한 명령어 리스트
+        self.valid_commands = ["U", "U'", "R", "R'", "L", "L'", "B", "B'", "Q"] # 유효한 명령어 리스트
         self.enter_commands() # 사용자로부터 입력을 받아 처리하는 함수
     
     # 현재 큐브 상태를 출력하는 함수
@@ -73,5 +73,9 @@ class plane_cube:
                 if self.check(command) == True:
                     self.process_command(command)
                 else:
-                    print(f"잘못된 입력입니다. 입력은 {self.valid_commands}만 가능합니다.")
+                    print(command)
+                    print(f"잘못된 입력입니다. 입력은 {self.valid_commands} 만 가능합니다.")
                     break
+
+# plane_cube 클래스의 생성자를 호출하여 화면에 출력합니다.
+plane_cube()
