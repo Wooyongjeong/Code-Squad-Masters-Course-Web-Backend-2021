@@ -50,11 +50,11 @@ class plane_cube:
             for i in range(3):
                 self.cube[i][0] = c[i]
         elif command == "B":
-            c = ''.join(self.cube[2])
-            self.cube[2] = list(push_left(1, c))
+            c = ''.join(self.cube[-1])
+            self.cube[-1] = list(push_left(1, c))
         elif command == "B'":
-            c = ''.join(self.cube[2])
-            self.cube[2] = list(push_right(1, c))
+            c = ''.join(self.cube[-1])
+            self.cube[-1] = list(push_right(1, c))
         self.print_cube()
     
     # 사용자로부터 입력을 받아 처리하는 함수
