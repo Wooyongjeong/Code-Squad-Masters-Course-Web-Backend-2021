@@ -13,12 +13,11 @@ def push_right(num, word):
         return push_left(-num, word)
 
 word, num, direction = input('> ').split()
-while -100 <= int(num) < 100:
-    print('숫자는 -100보다 크거나 같고, 100보다 작아야합니다 >')
-    num = int(input())
-while direction != 'L' or direction != 'R' or direction != 'l' or direction != 'r':
-    print('방향은 L, R, l, r 중 하나여야 합니다 >')
-    direction = input()
+while int(num) < -100 or int(num) >= 100:
+    num = int(input('숫자는 -100보다 크거나 같고, 100보다 작아야합니다 > '))
+directions = ['L', 'R', 'l', 'r']
+while direction not in directions:
+    direction = input('방향은 L, R, l, r 중 하나여야 합니다 > ')
 if direction == 'L' or direction == 'l':
     answer = push_left(int(num), word)
     print(answer)
