@@ -41,7 +41,7 @@ class plane_cube:
                 self.cube[i][-1] = c[i]
         elif command == "L":
             c = ''.join([self.cube[i][0] for i in range(3)])
-            c = list(push_left(1, c))
+            c = list(push_right(1, c))
             for i in range(3):
                 self.cube[i][0] = c[i]
         elif command == "L'":
