@@ -13,3 +13,5 @@ def push_right(num, word):
         return ''.join(word[len(word)-num:] + word[:len(word)-num])
     else:
         return push_left(-num, word)
+
+word, num, direction = input('> ').split()
