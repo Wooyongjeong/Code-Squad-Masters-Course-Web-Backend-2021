@@ -52,6 +52,10 @@ class cube():
         s += self.print_one_cube(is_first=False)
         print(s)
 
+    # command가 유효한 명령어인지 판단하는 함수
+    def check(self, command):
+        return True if command in self.valid_commands else False
+    
     # 사용자로부터 입력을 받아 명령어를 처리하는 함수
     def enter_commands(self):
         while True:
