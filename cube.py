@@ -51,6 +51,34 @@ class cube():
         s += '\n'
         s += self.print_one_cube(is_first=False)
         print(s)
+    
+    # command에 따라 큐브를 조작하는 함수
+    def process_command(self, command):
+        print(command)
+        if command == "U":
+            up()
+        elif command == "U'":
+            self.up(reverse=True)
+        elif command == "L":
+            self.left()
+        elif command == "L'":
+            self.left(reverse=True)
+        elif command == "F":
+            self.front()
+        elif command == "F'":
+            self.front(reverse=True)
+        elif command == "R":
+            self.right()
+        elif command == "R'":
+            self.right(reverse=True)
+        elif command == "B":
+            self.back()
+        elif command == "B'":
+            self.back(reverse=True)
+        elif command == "D":
+            self.down()
+        elif command == "D'":
+            self.down(reverse=True)
 
     # command가 유효한 명령어인지 판단하는 함수
     def check(self, command):
