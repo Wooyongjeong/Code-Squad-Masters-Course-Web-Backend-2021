@@ -51,3 +51,29 @@ class cube():
         s += '\n'
         s += self.print_one_cube(is_first=False)
         print(s)
+
+    # 사용자로부터 입력을 받아 명령어를 처리하는 함수
+    def enter_commands(self):
+        while True:
+            cmd = input('CUBE> ')
+            if cmd == 'Q':
+                print('Bye~')
+                break
+            command_count = 1
+            for i in range(len(cmd)):
+                if cmd[i] == "'":
+                    continue
+                command = cmd[i]
+                if '1' <= command <= '9':
+                    command_count = int(command)
+                    continue
+                if i + 1 != len(cmd) and cmd[i+1] == "'":
+                    command += "'"
+                if self.check(command) == True:
+                    for _ in range(command_count):
+                        self.process_command(command)
+                    command_count = 1
+                else:
+                    print(command)
+                    print(f"잘못된 입력입니다. 입력은 {self.valid_commands} 만 가능합니다.")
+                    break
