@@ -2,11 +2,12 @@ from push_word import push_left, push_right
 
 # plane_cube 클래스
 class plane_cube:
-    def __init__(self):
-        self.cube = [['R', 'R', 'W'], ['G', 'C', 'W'], ['G', 'B', 'B']] # 초기 큐브 상태
-        self.print_cube() # 현재 큐브 상태를 출력하는 함수
+    def __init__(self, color = None):
+        if color is None:
+            self.cube = [['R', 'R', 'W'], ['G', 'C', 'W'], ['G', 'B', 'B']] # 초기 큐브 상태
+        else:
+            self.cube = [[color for _ in range(3)] for _ in range(3)] # color를 지정하면 큐브 색을 모두 color로 초기화
         self.valid_commands = ["U", "U'", "R", "R'", "L", "L'", "B", "B'", "Q"] # 유효한 명령어 리스트
-        self.enter_commands() # 사용자로부터 입력을 받아 처리하는 함수
     
     # 현재 큐브 상태를 출력하는 함수
     def print_cube(self):
