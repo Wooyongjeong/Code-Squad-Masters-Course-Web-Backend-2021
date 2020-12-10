@@ -75,7 +75,7 @@ class cube():
     # 아랫쪽(Down)
     def down(self, reverse=False):
         pass
-    
+
     # command에 따라 큐브를 조작하는 함수
     def process_command(self, command):
         print(command)
@@ -103,6 +103,7 @@ class cube():
             self.down()
         elif command == "D'":
             self.down(reverse=True)
+        self.print_cube()
 
     # command가 유효한 명령어인지 판단하는 함수
     def check(self, command):
@@ -133,3 +134,5 @@ class cube():
                     print(command)
                     print(f"잘못된 입력입니다. 입력은 {self.valid_commands} 만 가능합니다.")
                     break
+
+cube()
