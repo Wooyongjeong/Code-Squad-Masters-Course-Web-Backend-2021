@@ -51,12 +51,36 @@ class cube():
         s += '\n'
         s += self.print_one_cube(is_first=False)
         print(s)
+
+    # 위(Up)
+    def up(self, reverse=False):
+        pass
+
+    # 왼쪽(Left)
+    def left(self, reverse=False):
+        pass
+
+    # 앞쪽(Front)
+    def front(self, reverse=False):
+        pass
+
+    # 오른쪽(right)
+    def right(self, reverse=False):
+        pass
+
+    # 뒤(Back)
+    def back(self, reverse=False):
+        pass
+
+    # 아랫쪽(Down)
+    def down(self, reverse=False):
+        pass
     
     # command에 따라 큐브를 조작하는 함수
     def process_command(self, command):
         print(command)
         if command == "U":
-            up()
+            self.up()
         elif command == "U'":
             self.up(reverse=True)
         elif command == "L":
