@@ -53,6 +53,24 @@ class cube():
         s += self.print_one_cube(is_first=False)
         print(s)
 
+    # 2차원 배열을 시계 방향으로 회전하는 함수. 출처: https://deepwelloper.tistory.com/117
+    def rotate_clockwise(self, m):
+        N = len(m)
+        ret = [[0] * N for _ in range(N)]
+        for r in range(N):
+            for c in range(N):
+                ret[c][N-1-r] = m[r][c]
+        return ret
+
+    # 2차원 배열을 반시계 방향으로 회전하는 함수. 출처: https://deepwelloper.tistory.com/117
+    def rotate_counterclockwise(self, m):
+        N = len(m)
+        ret = [[0] * N for _ in range(N)]
+        for r in range(N):
+            for c in range(N):
+                ret[N-1-c][r] = m[r][c]
+        return ret
+
     # 위(Up)
     def up(self, clockwise=True):
         pass
