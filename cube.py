@@ -73,7 +73,23 @@ class cube():
 
     # 위(Up)
     def up(self, clockwise=True):
-        pass
+        cube_string = ''
+        for cube_index in range(1, 5):
+            c = self.cube[cube_index]
+            for j in range(3):
+                cube_string += c[0][j]
+        if clockwise == True:
+            self.cube[0] = self.rotate_clockwise(self.cube[0])
+            cube_string = push_left(3, cube_string) # U'
+        else:
+            self.cube[0] = self.rotate_counterclockwise(self.cube[0])
+            cube_string = push_right(3, cube_string) # U
+        index = 0
+        for cube_index in range(1, 5):
+            c = self.cube[cube_index]
+            for j in range(3):
+                c[0][j] = cube_string[index]
+                index += 1
 
     # 왼쪽(Left)
     def left(self, clockwise=True):
@@ -93,7 +109,23 @@ class cube():
 
     # 아랫쪽(Down)
     def down(self, clockwise=True):
-        pass
+        cube_string = ''
+        for cube_index in range(1, 5):
+            c = self.cube[cube_index]
+            for j in range(3):
+                cube_string += c[-1][j]
+        if clockwise == True:
+            self.cube[-1] = self.rotate_clockwise(self.cube[-1])
+            cube_string = push_left(3, cube_string) # U'
+        else:
+            self.cube[-1] = self.rotate_counterclockwise(self.cube[-1])
+            cube_string = push_right(3, cube_string) # U
+        index = 0
+        for cube_index in range(1, 5):
+            c = self.cube[cube_index]
+            for j in range(3):
+                c[-1][j] = cube_string[index]
+                index += 1
 
     # command에 따라 큐브를 조작하는 함수
     def process_command(self, command):
