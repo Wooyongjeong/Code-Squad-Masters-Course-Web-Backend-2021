@@ -23,7 +23,7 @@ class cube():
     def mix_cube(self):
         while True:
             want_random = input('큐브를 무작위로 섞으시겠습니까? (Y/N) > ')
-            if want_random == 'Y':
+            if want_random == 'Y' or want_random == 'y':
                 random_count = randrange(10, 41) # 10 ~ 40 중 랜덤한 숫자
                 # 그 횟수만큼 가능한 명령어 리스트("Q"는 제외) 중 랜덤하게 실행
                 print(f"{random_count}번 큐브를 섞습니다...")
@@ -33,7 +33,7 @@ class cube():
                 print("큐브 섞기 완료")
                 self.print_cube()
                 break
-            elif want_random == 'N':
+            elif want_random == 'N' or want_random == 'n':
                 break
             else:
                 print('Y 또는 N으로 입력해주세요')
