@@ -74,7 +74,8 @@ class cube():
     # 위(Up)
     def up(self, clockwise=True):
         cube_string = ''
-        for cube_index in range(1, 5):
+        rotating_planes = range(1, 5)
+        for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
                 cube_string += c[0][j]
@@ -85,7 +86,7 @@ class cube():
             self.cube[0] = self.rotate_counterclockwise(self.cube[0])
             cube_string = push_right(3, cube_string)
         index = 0
-        for cube_index in range(1, 5):
+        for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
                 c[0][j] = cube_string[index]
@@ -144,7 +145,8 @@ class cube():
     # 아랫쪽(Down)
     def down(self, clockwise=True):
         cube_string = ''
-        for cube_index in range(1, 5):
+        rotating_planes = range(1, 5)
+        for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
                 cube_string += c[-1][j]
@@ -155,7 +157,7 @@ class cube():
             self.cube[-1] = self.rotate_counterclockwise(self.cube[-1])
             cube_string = push_right(3, cube_string)
         index = 0
-        for cube_index in range(1, 5):
+        for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
                 c[-1][j] = cube_string[index]
