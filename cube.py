@@ -74,7 +74,7 @@ class cube():
     # 위(Up)
     def up(self, clockwise=True):
         cube_string = ''
-        rotating_planes = range(1, 5)
+        rotating_planes = range(1, 5) # 윗쪽을 돌릴 때 돌아가는 큐브 면의 인덱스 
         for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
@@ -115,7 +115,24 @@ class cube():
 
     # 앞쪽(Front)
     def front(self, clockwise=True):
-        pass
+        cube_string = ''
+        rotating_planes = [0, 3, 5, 1] # 앞쪽을 돌릴 때 돌아가는 큐브 면의 인덱스
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for j in range(3):
+                cube_string += c[-1][j]
+        if clockwise == True: # F
+            self.cube[2] = self.rotate_clockwise(self.cube[2])
+            cube_string = push_right(3, cube_string)
+        else: # F'
+            self.cube[2] = self.rotate_counterclockwise(self.cube[2])
+            cube_string = push_left(3, cube_string)
+        index = 0
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for j in range(3):
+                c[-1][j] = cube_string[index]
+                index += 1
 
     # 오른쪽(right)
     def right(self, clockwise=True):
@@ -140,12 +157,29 @@ class cube():
 
     # 뒤(Back)
     def back(self, clockwise=True):
-        pass
+        cube_string = ''
+        rotating_planes = [0, 3, 5, 1] # 앞쪽을 돌릴 때 돌아가는 큐브 면의 인덱스
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for j in range(3):
+                cube_string += c[0][j]
+        if clockwise == True: # F
+            self.cube[4] = self.rotate_clockwise(self.cube[4])
+            cube_string = push_right(3, cube_string)
+        else: # F'
+            self.cube[4] = self.rotate_counterclockwise(self.cube[4])
+            cube_string = push_left(3, cube_string)
+        index = 0
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for j in range(3):
+                c[0][j] = cube_string[index]
+                index += 1
 
     # 아랫쪽(Down)
     def down(self, clockwise=True):
         cube_string = ''
-        rotating_planes = range(1, 5)
+        rotating_planes = range(1, 5) # 아랫쪽을 돌릴 때 돌아가는 큐브 면의 인덱스 
         for cube_index in rotating_planes:
             c = self.cube[cube_index]
             for j in range(3):
