@@ -1,6 +1,7 @@
 from push_word import push_left, push_right
 from plane_cube import plane_cube
 import time
+import random
 
 class cube():
     def __init__(self):
@@ -12,7 +13,26 @@ class cube():
         ]
         self.print_cube() # 큐브 상태 출력
         self.valid_commands = ["U", "U'", "L", "L'", "F", "F'", "R", "R'", "B", "B'", "D", "D'", "Q"] # 가능한 명령어 리스트
+        self.mix_cube() # 큐브 무작위 섞기 함수
         self.enter_commands() # 사용자로부터 입력을 받는 함수
+
+    def mix_cube(self):
+        while True:
+            want_random = input('큐브를 무작위로 섞으시겠습니까? (Y/N) > ')
+            if want_random == 'Y':
+                random_count = random.randrange(10, 20) # 10 ~ 20 중 랜덤한 숫자
+                # 그 횟수만큼 가능한 명령어 리스트("Q"는 제외) 중 랜덤하게 실행
+                print(f"{random_count}번 큐브를 섞습니다...")
+                random_commands = [random.choice(self.valid_commands[:-1]) for _ in range(random_count)]
+                for command in random_commands:
+                    self.process_command(command)
+                print("큐브 섞기 완료")
+                self.print_cube()
+                break
+            elif want_random == 'N':
+                break
+            else:
+                print('Y 또는 N으로 입력해주세요')
 
     # 큐브의 위쪽, 아랫쪽 부분을 출력하는 함수
     def print_one_cube(self, is_first=True):
@@ -201,7 +221,6 @@ class cube():
 
     # command에 따라 큐브를 조작하는 함수
     def process_command(self, command):
-        print(command)
         if command == "U":
             self.up()
         elif command == "U'":
@@ -226,7 +245,6 @@ class cube():
             self.down()
         elif command == "D'":
             self.down(clockwise=False)
-        self.print_cube()
 
     # command가 유효한 명령어인지 판단하는 함수
     def check(self, command):
@@ -254,7 +272,9 @@ class cube():
                     command += "'"
                 if self.check(command) == True:
                     for _ in range(command_count):
+                        print(command)
                         self.process_command(command)
+                        self.print_cube()
                     command_count = 1
                 else:
                     print(command)
