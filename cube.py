@@ -1,8 +1,10 @@
 from push_word import push_left, push_right
 from plane_cube import plane_cube
+import time
 
 class cube():
     def __init__(self):
+        self.start_time = time.time() # 경과 시간 측정을 위해 시간 측정
         self.cube = [
             plane_cube('B').cube,
             plane_cube('W').cube, plane_cube('O').cube, plane_cube('G').cube, plane_cube('Y').cube,
@@ -235,7 +237,10 @@ class cube():
         while True:
             cmd = input('CUBE> ')
             if cmd == 'Q':
-                print('Bye~')
+                end_time = time.time()
+                elapsed_time = int(end_time - self.start_time)
+                print(f"경과 시간: {elapsed_time // 60:02d}:{elapsed_time % 60:02d}")
+                print("이용해주셔서 감사합니다. 뚜뚜뚜.")
                 break
             command_count = 1
             for i in range(len(cmd)):
