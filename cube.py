@@ -1,11 +1,12 @@
+from push_word import push_left, push_right
 from plane_cube import plane_cube
 
 class cube():
     def __init__(self):
         self.cube = [
-            plane_cube('B'),
-            plane_cube('W'), plane_cube('O'), plane_cube('G'), plane_cube('Y'),
-            plane_cube('R')
+            plane_cube('B').cube,
+            plane_cube('W').cube, plane_cube('O').cube, plane_cube('G').cube, plane_cube('Y').cube,
+            plane_cube('R').cube
         ]
         self.print_cube() # 큐브 상태 출력
         self.valid_commands = ["U", "U'", "L", "L'", "F", "F'", "R", "R'", "B", "B'", "D", "D'", "Q"] # 가능한 명령어 리스트
@@ -22,7 +23,7 @@ class cube():
             s += ' ' * 16
             for j in range(3):
                 c = self.cube[cube_index]
-                s += c.cube[i][j] + ' '
+                s += c[i][j] + ' '
             s += '\n'
         return s
 
@@ -31,7 +32,7 @@ class cube():
         s = ''
         for j in range(3):
             c = self.cube[cube_index]
-            s += c.cube[i][j] + ' '
+            s += c[i][j] + ' '
         if cube_index != 4:
             s += ' ' * 5
         else:
@@ -53,27 +54,27 @@ class cube():
         print(s)
 
     # 위(Up)
-    def up(self, reverse=False):
+    def up(self, clockwise=True):
         pass
 
     # 왼쪽(Left)
-    def left(self, reverse=False):
+    def left(self, clockwise=True):
         pass
 
     # 앞쪽(Front)
-    def front(self, reverse=False):
+    def front(self, clockwise=True):
         pass
 
     # 오른쪽(right)
-    def right(self, reverse=False):
+    def right(self, clockwise=True):
         pass
 
     # 뒤(Back)
-    def back(self, reverse=False):
+    def back(self, clockwise=True):
         pass
 
     # 아랫쪽(Down)
-    def down(self, reverse=False):
+    def down(self, clockwise=True):
         pass
 
     # command에 따라 큐브를 조작하는 함수
@@ -82,27 +83,27 @@ class cube():
         if command == "U":
             self.up()
         elif command == "U'":
-            self.up(reverse=True)
+            self.up(clockwise=False)
         elif command == "L":
             self.left()
         elif command == "L'":
-            self.left(reverse=True)
+            self.left(clockwise=False)
         elif command == "F":
             self.front()
         elif command == "F'":
-            self.front(reverse=True)
+            self.front(clockwise=False)
         elif command == "R":
             self.right()
         elif command == "R'":
-            self.right(reverse=True)
+            self.right(clockwise=False)
         elif command == "B":
             self.back()
         elif command == "B'":
-            self.back(reverse=True)
+            self.back(clockwise=False)
         elif command == "D":
             self.down()
         elif command == "D'":
-            self.down(reverse=True)
+            self.down(clockwise=False)
         self.print_cube()
 
     # command가 유효한 명령어인지 판단하는 함수
