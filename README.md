@@ -267,7 +267,8 @@ up(), left(), ... , down() 함수 모두 비슷한 로직이므로 left() 함수
     - 왼쪽으로 회전할 때 돌아가는 부분을 for문을 돌며 `cube_string` 문자열에 `rotating_planes` 리스트 순서대로 저장합니다.
     - 큐브를 잡고 돌리면 한쪽 면은 돌리는 방향으로 회전하므로, `left()`의 default parameter인 `clockwise` 변수에 따라 `self.rotate_clockwise`나 `self.rotate_counterclockwise`를 호출합니다.
         - `left()`에서는 회전하는 면은 `self.cube[1]`이므로 `self.cube[1]` 면을 회전해줍니다.
-    - 시계 방향으로 돌리는 것은 `push_right()`을 호출하는 것과 같은 결과입니다. 이 때, 3만큼 오른쪽으로 밀어냅니다. 반대 방향은 `push_left()`를 호출합니다.
+    - `left()`에서 시계 방향으로 돌리는 것은 `push_right()`을 호출하는 것과 같은 결과입니다. 이 때, 3만큼 오른쪽으로 밀어냅니다. 반대 방향은 `push_left()`를 호출합니다.
+        - 다른 함수에서 이 방향은 반대로 될 수 있습니다.
 1. `push_left()`나 `push_right()` 함수를 통해 얻은 결과를 이용하여 현재 큐브 상태를 갱신합니다. `cube_string`에 저장된 순서대로, `rotating_planes` 리스트의 순서대로 각 면을 업데이트 합니다.
 
 
