@@ -24,7 +24,7 @@ class cube():
         while True:
             want_random = input('큐브를 무작위로 섞으시겠습니까? (Y/N) > ')
             if want_random == 'Y':
-                random_count = randrange(10, 20) # 10 ~ 20 중 랜덤한 숫자
+                random_count = randrange(10, 41) # 10 ~ 40 중 랜덤한 숫자
                 # 그 횟수만큼 가능한 명령어 리스트("Q"는 제외) 중 랜덤하게 실행
                 print(f"{random_count}번 큐브를 섞습니다...")
                 random_commands = [choice(self.valid_commands[:-1]) for _ in range(random_count)]
