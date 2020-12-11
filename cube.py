@@ -80,10 +80,10 @@ class cube():
                 cube_string += c[0][j]
         if clockwise == True:
             self.cube[0] = self.rotate_clockwise(self.cube[0])
-            cube_string = push_left(3, cube_string) # U'
+            cube_string = push_left(3, cube_string)
         else:
             self.cube[0] = self.rotate_counterclockwise(self.cube[0])
-            cube_string = push_right(3, cube_string) # U
+            cube_string = push_right(3, cube_string)
         index = 0
         for cube_index in range(1, 5):
             c = self.cube[cube_index]
@@ -93,7 +93,24 @@ class cube():
 
     # 왼쪽(Left)
     def left(self, clockwise=True):
-        pass
+        cube_string = ''
+        rotating_planes = [0, 2, 5, 4] # 왼쪽을 돌릴 때 돌아가는 큐브 면의 인덱스 
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for i in range(3):
+                cube_string += c[i][0]
+        if clockwise == True: # L
+            self.cube[1] = self.rotate_clockwise(self.cube[1])
+            cube_string = push_right(3, cube_string)
+        else: # L'
+            self.cube[1] = self.rotate_counterclockwise(self.cube[1])
+            cube_string = push_left(3, cube_string)
+        index = 0
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for i in range(3):
+                c[i][0] = cube_string[index]
+                index += 1
 
     # 앞쪽(Front)
     def front(self, clockwise=True):
@@ -101,7 +118,24 @@ class cube():
 
     # 오른쪽(right)
     def right(self, clockwise=True):
-        pass
+        cube_string = ''
+        rotating_planes = [0, 2, 5, 4] # 오른쪽을 돌릴 때 돌아가는 큐브 면의 인덱스 
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for i in range(3):
+                cube_string += c[i][-1]
+        if clockwise == True: # R
+            self.cube[3] = self.rotate_clockwise(self.cube[3])
+            cube_string = push_right(3, cube_string)
+        else: # R'
+            self.cube[3] = self.rotate_counterclockwise(self.cube[3])
+            cube_string = push_left(3, cube_string)
+        index = 0
+        for cube_index in rotating_planes:
+            c = self.cube[cube_index]
+            for i in range(3):
+                c[i][-1] = cube_string[index]
+                index += 1
 
     # 뒤(Back)
     def back(self, clockwise=True):
@@ -116,10 +150,10 @@ class cube():
                 cube_string += c[-1][j]
         if clockwise == True:
             self.cube[-1] = self.rotate_clockwise(self.cube[-1])
-            cube_string = push_left(3, cube_string) # U'
+            cube_string = push_left(3, cube_string)
         else:
             self.cube[-1] = self.rotate_counterclockwise(self.cube[-1])
-            cube_string = push_right(3, cube_string) # U
+            cube_string = push_right(3, cube_string)
         index = 0
         for cube_index in range(1, 5):
             c = self.cube[cube_index]
