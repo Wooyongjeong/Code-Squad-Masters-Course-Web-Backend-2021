@@ -2,6 +2,8 @@ from push_word import push_left, push_right
 from plane_cube import plane_cube
 from time import time
 from random import randrange, choice
+from copy import deepcopy
+from sys import exit
 
 class cube():
     def __init__(self):
@@ -11,6 +13,8 @@ class cube():
             plane_cube('W').cube, plane_cube('O').cube, plane_cube('G').cube, plane_cube('Y').cube,
             plane_cube('R').cube
         ]
+        self.answer = deepcopy(self.cube) # 모든 면을 맞추었는지 확인하기 위한 정답 큐브 리스트
+        self.count = 0
         self.print_cube() # 큐브 상태 출력
         self.valid_commands = ["U", "U'", "L", "L'", "F", "F'", "R", "R'", "B", "B'", "D", "D'", "Q"] # 가능한 명령어 리스트
         self.mix_cube() # 큐브 무작위 섞기 함수
@@ -250,15 +254,28 @@ class cube():
     def check(self, command):
         return True if command in self.valid_commands else False
     
+    # 프로그램을 종료하는 함수
+    def exit_program(self, is_answer=False):
+        end_time = time()
+        elapsed_time = int(end_time - self.start_time)
+        print(f"경과 시간: {elapsed_time // 60:02d}:{elapsed_time % 60:02d}")
+        print(f"조작갯수: {self.count}")
+        if is_answer == True:
+            print("축하합니다! 모든 면을 맞추셨습니다.")
+        print("이용해주셔서 감사합니다. 뚜뚜뚜.")
+        exit(0)
+    
+    # 모든 면이 맞춰졌는지 확인하는 함수
+    def compare_to_answer(self):
+        if self.cube == self.answer:
+            self.exit_program(is_answer=True)
+
     # 사용자로부터 입력을 받아 명령어를 처리하는 함수
     def enter_commands(self):
         while True:
             cmd = input('CUBE> ')
             if cmd == 'Q':
-                end_time = time()
-                elapsed_time = int(end_time - self.start_time)
-                print(f"경과 시간: {elapsed_time // 60:02d}:{elapsed_time % 60:02d}")
-                print("이용해주셔서 감사합니다. 뚜뚜뚜.")
+                self.exit_program()
                 break
             command_count = 1
             for i in range(len(cmd)):
@@ -274,7 +291,9 @@ class cube():
                     for _ in range(command_count):
                         print(command)
                         self.process_command(command)
+                        self.count += 1
                         self.print_cube()
+                        self.compare_to_answer()
                     command_count = 1
                 else:
                     print(command)
